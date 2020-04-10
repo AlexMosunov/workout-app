@@ -1,24 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UeT-nc-slO">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Muscle Groups-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="Workout_at_home_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Jj-8e-H3Y">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="icN-1f-7OT">
+                                    <size key="itemSize" width="189" height="164"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MuscleGroupCell" id="ABt-Aq-XLJ" customClass="MuscleGroupCell" customModule="Workout_at_home_app" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="10" width="189" height="164"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1v7-F9-ghu">
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="164"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oH2-Qp-mea">
+                                                    <rect key="frame" x="0.0" y="32" width="189" height="132"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8C5-sW-JLD">
+                                                    <rect key="frame" x="0.0" y="8" width="189" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oH2-Qp-mea" firstAttribute="leading" secondItem="1v7-F9-ghu" secondAttribute="leading" id="8Vz-ha-cMx"/>
+                                                <constraint firstItem="8C5-sW-JLD" firstAttribute="top" secondItem="1v7-F9-ghu" secondAttribute="top" constant="8" id="F6h-P5-kX7"/>
+                                                <constraint firstAttribute="trailing" secondItem="8C5-sW-JLD" secondAttribute="trailing" id="GWf-2y-Qcd"/>
+                                                <constraint firstItem="8C5-sW-JLD" firstAttribute="leading" secondItem="1v7-F9-ghu" secondAttribute="leading" id="J2N-dN-HDd"/>
+                                                <constraint firstItem="oH2-Qp-mea" firstAttribute="top" secondItem="8C5-sW-JLD" secondAttribute="bottom" constant="3" id="MYS-ez-Lcd"/>
+                                                <constraint firstAttribute="trailing" secondItem="oH2-Qp-mea" secondAttribute="trailing" id="Ukm-rV-bSO"/>
+                                                <constraint firstAttribute="bottom" secondItem="oH2-Qp-mea" secondAttribute="bottom" id="Xpy-Cs-NmS"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="189" height="164"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="oH2-Qp-mea" id="C46-hf-Eup"/>
+                                            <outlet property="textLabel" destination="8C5-sW-JLD" id="uaj-dl-9lc"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Ux7-ik-Pdr"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zcq-Co-Vyr"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="0Jj-8e-H3Y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1ht-zj-Tsb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Jj-8e-H3Y" secondAttribute="bottom" id="UMl-bQ-t5w"/>
+                            <constraint firstItem="0Jj-8e-H3Y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XVz-sE-V2H"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Jj-8e-H3Y" secondAttribute="trailing" id="pbS-N9-gtQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Muscle Groups" id="wbU-9m-vvR"/>
+                    <connections>
+                        <outlet property="collectionView" destination="0Jj-8e-H3Y" id="xgd-Zl-LHO"/>
+                        <segue destination="OfV-GP-cyu" kind="show" identifier="goToExercises" id="YBs-KH-6Io"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="928" y="119"/>
+        </scene>
+        <!--ExercisesVC-->
+        <scene sceneID="Ibx-Gv-1HY">
+            <objects>
+                <viewController id="OfV-GP-cyu" customClass="ExercisesVC" customModule="Workout_at_home_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RHz-H2-fR0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LhI-Gg-hk9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <color key="backgroundColor" red="0.48207310780000001" green="0.59183557180000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="SPr-vj-IFM"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="B3J-da-d2j">
+                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                    <size key="estimatedItemSize" width="124" height="70"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SwitchMuscleGroupCell" id="zWY-Re-EmO" customClass="SwitchMuscleGroupCell" customModule="Workout_at_home_app" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="13.5" width="124" height="73"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cR9-ON-SUn">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="73"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvh-bz-7Pb">
+                                                    <rect key="frame" x="38" y="24.5" width="48" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.65490196079999996" green="0.91372549020000005" blue="0.68627450980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="Tvh-bz-7Pb" firstAttribute="centerX" secondItem="cR9-ON-SUn" secondAttribute="centerX" id="WdE-sS-K9B"/>
+                                                <constraint firstItem="Tvh-bz-7Pb" firstAttribute="centerY" secondItem="cR9-ON-SUn" secondAttribute="centerY" id="ppc-Lv-tEe"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="124" height="73"/>
+                                        <connections>
+                                            <outlet property="muscleGroupLabel" destination="Tvh-bz-7Pb" id="0f2-2R-nxf"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="OfV-GP-cyu" id="0AN-Mr-Hph"/>
+                                    <outlet property="delegate" destination="OfV-GP-cyu" id="2ZP-WH-cjV"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VIj-33-nMg">
+                                <rect key="frame" x="0.0" y="196" width="414" height="680"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mwz-bU-Og3">
+                                    <size key="itemSize" width="150" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExerciseCell" id="Ywx-Me-cwn" customClass="ExerciseCell" customModule="Workout_at_home_app" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RsT-m8-bEy">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5b7-E6-4Wt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="5b7-E6-4Wt" secondAttribute="bottom" id="4Yz-yu-vTk"/>
+                                                <constraint firstAttribute="trailing" secondItem="5b7-E6-4Wt" secondAttribute="trailing" id="APE-QJ-zqz"/>
+                                                <constraint firstItem="5b7-E6-4Wt" firstAttribute="leading" secondItem="RsT-m8-bEy" secondAttribute="leading" id="Nya-PT-Wrf"/>
+                                                <constraint firstItem="5b7-E6-4Wt" firstAttribute="top" secondItem="RsT-m8-bEy" secondAttribute="top" id="ixk-nQ-1h6"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" red="0.47019512670000002" green="0.66666668650000005" blue="0.41833518050000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="customSize" width="150" height="100"/>
+                                        <connections>
+                                            <outlet property="exerciseImage" destination="5b7-E6-4Wt" id="giu-Qa-4ve"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="OfV-GP-cyu" id="pgb-w1-RoN"/>
+                                    <outlet property="delegate" destination="OfV-GP-cyu" id="v2r-Yh-RUT"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VIj-33-nMg" firstAttribute="top" secondItem="LhI-Gg-hk9" secondAttribute="bottom" constant="8" id="5ny-aA-CKi"/>
+                            <constraint firstItem="LhI-Gg-hk9" firstAttribute="leading" secondItem="eQU-Jw-jDj" secondAttribute="leading" id="90l-P6-AGH"/>
+                            <constraint firstItem="VIj-33-nMg" firstAttribute="leading" secondItem="eQU-Jw-jDj" secondAttribute="leading" id="BgY-td-i7h"/>
+                            <constraint firstAttribute="bottom" secondItem="VIj-33-nMg" secondAttribute="bottom" constant="20" symbolic="YES" id="CPt-6e-Syi"/>
+                            <constraint firstItem="LhI-Gg-hk9" firstAttribute="top" secondItem="eQU-Jw-jDj" secondAttribute="top" id="Hxg-20-6nV"/>
+                            <constraint firstItem="VIj-33-nMg" firstAttribute="trailing" secondItem="eQU-Jw-jDj" secondAttribute="trailing" id="ZDl-aj-nbb"/>
+                            <constraint firstItem="LhI-Gg-hk9" firstAttribute="trailing" secondItem="eQU-Jw-jDj" secondAttribute="trailing" id="dLT-31-1Ju"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eQU-Jw-jDj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4go-Y7-wDH"/>
+                    <connections>
+                        <outlet property="exercisesCollectionView" destination="VIj-33-nMg" id="8dH-Qm-wA8"/>
+                        <outlet property="muscleGroupsCollectionView" destination="LhI-Gg-hk9" id="P0Z-bc-jtm"/>
+                        <segue destination="uK3-lt-cit" kind="show" identifier="goToDetails" id="KyK-bS-dZ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJT-tb-dV4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1760.8695652173915" y="116.51785714285714"/>
+        </scene>
+        <!--Exercise DetailsVC-->
+        <scene sceneID="wSj-kd-Elw">
+            <objects>
+                <viewController id="uK3-lt-cit" customClass="ExerciseDetailsVC" customModule="Workout_at_home_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1a0-wk-fFZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4dY-Di-zuw">
+                                <rect key="frame" x="0.0" y="88" width="414" height="230"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="xIJ-rm-tbc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYQ-5z-V8g">
+                                <rect key="frame" x="54" y="341" width="306" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="TGM-IX-DJq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ioy-YR-e3M">
+                                <rect key="frame" x="20" y="396" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TY4-cy-dO9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="230"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="play.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="playButtonTapped:" destination="uK3-lt-cit" eventType="touchUpInside" id="gC2-rs-NbL"/>
+                                </connections>
+                            </button>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwy-LD-HAh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="230"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="JOv-oo-FCc" firstAttribute="trailing" secondItem="TY4-cy-dO9" secondAttribute="trailing" id="0hW-NP-4L2"/>
+                            <constraint firstItem="TY4-cy-dO9" firstAttribute="leading" secondItem="JOv-oo-FCc" secondAttribute="leading" id="5kh-xJ-HjF"/>
+                            <constraint firstItem="JOv-oo-FCc" firstAttribute="trailing" secondItem="4dY-Di-zuw" secondAttribute="trailing" id="5u2-M7-cq4"/>
+                            <constraint firstItem="4dY-Di-zuw" firstAttribute="top" secondItem="JOv-oo-FCc" secondAttribute="top" id="7Wv-zZ-1YE"/>
+                            <constraint firstItem="ioy-YR-e3M" firstAttribute="leading" secondItem="JOv-oo-FCc" secondAttribute="leading" constant="20" id="9Gi-Ku-2Sl"/>
+                            <constraint firstItem="ioy-YR-e3M" firstAttribute="top" secondItem="bYQ-5z-V8g" secondAttribute="bottom" constant="30" id="FjL-BH-cbo"/>
+                            <constraint firstItem="bYQ-5z-V8g" firstAttribute="leading" secondItem="JOv-oo-FCc" secondAttribute="leading" constant="54" id="MtK-PN-Otn"/>
+                            <constraint firstItem="bYQ-5z-V8g" firstAttribute="top" secondItem="TY4-cy-dO9" secondAttribute="bottom" constant="23" id="QIl-TE-hf1"/>
+                            <constraint firstItem="4dY-Di-zuw" firstAttribute="leading" secondItem="JOv-oo-FCc" secondAttribute="leading" id="ZbK-L7-UVc"/>
+                            <constraint firstItem="bYQ-5z-V8g" firstAttribute="top" secondItem="4dY-Di-zuw" secondAttribute="bottom" constant="23" id="hma-Kr-Rml"/>
+                            <constraint firstItem="JOv-oo-FCc" firstAttribute="trailing" secondItem="ioy-YR-e3M" secondAttribute="trailing" constant="20" id="iSb-c0-Jx2"/>
+                            <constraint firstItem="ioy-YR-e3M" firstAttribute="centerX" secondItem="1a0-wk-fFZ" secondAttribute="centerX" id="j8s-V1-5Z4"/>
+                            <constraint firstItem="JOv-oo-FCc" firstAttribute="trailing" secondItem="bYQ-5z-V8g" secondAttribute="trailing" constant="54" id="ota-5M-Kqb"/>
+                            <constraint firstItem="TY4-cy-dO9" firstAttribute="top" secondItem="JOv-oo-FCc" secondAttribute="top" id="qvr-Yx-fIz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JOv-oo-FCc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JdJ-yU-Xam"/>
+                    <connections>
+                        <outlet property="exerciseDescription" destination="ioy-YR-e3M" id="sd6-fR-hfV"/>
+                        <outlet property="exerciseImagePreview" destination="4dY-Di-zuw" id="bCo-nB-dKp"/>
+                        <outlet property="exerciseName" destination="bYQ-5z-V8g" id="3dG-6l-fDb"/>
+                        <outlet property="playButton" destination="TY4-cy-dO9" id="cwH-eM-Cma"/>
+                        <outlet property="webView" destination="Vwy-LD-HAh" id="vNf-n3-DGk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTy-eN-qnE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2579.7101449275365" y="118.52678571428571"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="X5C-Kl-Sib">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UeT-nc-slO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eBo-qD-Bpy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ghR-JE-dPn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ArO-bZ-Lap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play.circle" catalog="system" width="64" height="60"/>
+    </resources>
 </document>
