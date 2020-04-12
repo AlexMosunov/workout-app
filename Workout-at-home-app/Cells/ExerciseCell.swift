@@ -12,8 +12,9 @@ class ExerciseCell: UICollectionViewCell {
     
     
     @IBOutlet weak var exerciseImage: UIImageView!
+    @IBOutlet weak var exerciseNameLabel: UILabel!
     
     override func awakeFromNib() {
-           self.layer.cornerRadius = 10
+           self.layer.cornerRadius = 1
        }
 }

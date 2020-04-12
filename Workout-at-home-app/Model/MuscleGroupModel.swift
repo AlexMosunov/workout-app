@@ -11,10 +11,11 @@ import Foundation
 class MuscleGroup {
     var groupName: String
     var imageName: String
+    var exercisesList: [Exercise]?
     
-    
-    init(groupName: String, imageName: String) {
+    init(groupName: String, imageName: String, exercisesList: [Exercise]?) {
         self.groupName = groupName
         self.imageName = imageName
+        self.exercisesList = exercisesList
     }
 }

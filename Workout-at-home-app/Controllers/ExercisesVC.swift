@@ -14,22 +14,22 @@ class ExercisesVC: UIViewController {
     @IBOutlet weak var exercisesCollectionView: UICollectionView!
     
     
-    
     var muscleGroupsList = MuscleGroupList()
-    var exercisesList = ExercisesList()
-    
     var muscleGroup: MuscleGroup?
-    //    var selectedExercise: Exercise?
-    
-    
     var exercise: Exercise?
+
     
-    let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
+    let sectionInsetsVertical = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    let sectionInsetsHorizontal = UIEdgeInsets(top: 18.0, left: 20.0, bottom: 18.0, right: 20.0)
     let itemsPerRow: CGFloat = 1
+    let itemsPerColumn: CGFloat = 1
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.gray]        
+        
+        
         
     }
     
@@ -42,51 +42,54 @@ class ExercisesVC: UIViewController {
     }
     
     
-    func getExercises() -> [Exercise]? {
-        if let selectedMuscleGroup = muscleGroup?.groupName {
-            let exercises = exercisesList.exercises(muscleGroup: selectedMuscleGroup)
-            return exercises
-        }
-        return nil
-    }
     
 }
 
-
+//MARK: - UICollectionViewDelegate
 
 extension ExercisesVC: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+//        if let cell = muscleGroupsCollectionView.cellForItem(at: indexPath) as? SwitchMuscleGroupCell {
+//            cell.layer.borderColor = UIColor.green.cgColor
+//        }
+        
         if collectionView == exercisesCollectionView {
             
-            let exercises = getExercises()
-            let selectedExercise = exercises?[indexPath.row]
-            performSegue(withIdentifier: "goToDetails", sender: selectedExercise)
+            if let ex = muscleGroup?.exercisesList![indexPath.row] {
+                performSegue(withIdentifier: "goToDetails", sender: ex)
+            }
+            
+        } else if collectionView == muscleGroupsCollectionView {
+            
+            muscleGroup = muscleGroupsList.muscleGroups[indexPath.row]
+            
+            muscleGroupsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            
+            exercisesCollectionView.reloadData()
+            muscleGroupsCollectionView.reloadData()
             
         }
         
-        if collectionView == muscleGroupsCollectionView {
-            print(indexPath.row)
-            exercisesCollectionView.backgroundColor = .black
-            
-            
-            let exerciseCell = exercisesCollectionView.dequeueReusableCell(withReuseIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCell
-            exerciseCell.exerciseImage.image = UIImage(named: "error")
-            
-            
-            let exercises = getExercises()
-            let exercise = exercises?[indexPath.row]
-            exerciseCell.exerciseImage.image = UIImage(named: exercise?.videoBanner ?? "error")
-            
-            
-        }
         
         
     }
     
+    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//
+//
+//        if let cell = muscleGroupsCollectionView.cellForItem(at: indexPath) as? SwitchMuscleGroupCell {
+//            cell.layer.borderColor = UIColor.gray.cgColor
+//
+//        }
+//    }
+    
 }
 
 
+//MARK: - UICollectionViewDataSource
 
 extension ExercisesVC: UICollectionViewDataSource {
     
@@ -94,18 +97,13 @@ extension ExercisesVC: UICollectionViewDataSource {
         
         if collectionView == exercisesCollectionView {
             
-            let exercises = getExercises()
-            return exercises?.count ?? 0
+            return muscleGroup?.exercisesList?.count ?? 0
             
-            
-        }
-        
-        if collectionView == muscleGroupsCollectionView {
+        } else if collectionView == muscleGroupsCollectionView {
             return muscleGroupsList.muscleGroups.count
         }
         return 0
     }
-    
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,31 +113,39 @@ extension ExercisesVC: UICollectionViewDataSource {
             let muscleGroupName = muscleGroupsList.muscleGroups[indexPath.row].groupName
             
             muscleGroupCell.muscleGroupLabel.text = muscleGroupName
+            
+            // make green borders to muscleGroupCell with muscle group that was selected in MainViewController and scroll to this item
+            if muscleGroupName == muscleGroup?.groupName {
+                muscleGroupCell.isSelected = true
+                muscleGroupsCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            } else {
+                muscleGroupCell.isSelected = false
+            }
+            
+  
+            ///
+            
             return muscleGroupCell
-        }
-        
-        
-        if (collectionView == exercisesCollectionView) {
+            
+        } else if collectionView == exercisesCollectionView {
             let exerciseCell = exercisesCollectionView.dequeueReusableCell(withReuseIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCell
             
-            
-            let exercises = getExercises()
-            let exercise = exercises?[indexPath.row]
-            exerciseCell.exerciseImage.image = UIImage(named: exercise?.videoBanner ?? "error")
-            
+            if let ex = muscleGroup?.exercisesList![indexPath.row] {
+                exerciseCell.exerciseImage.image = UIImage(named: ex.videoBanner)
+                exerciseCell.exerciseNameLabel.text = ex.name
+            }
             
             return exerciseCell
             
-            
-            
         }
         return UICollectionViewCell()
-        
     }
+    
     
 }
 
 
+//MARK: - UICollectionViewDelegateFlowLayout
 
 extension ExercisesVC: UICollectionViewDelegateFlowLayout {
     
@@ -148,13 +154,22 @@ extension ExercisesVC: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
         if collectionView == exercisesCollectionView {
-            let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+            let paddingSpace = sectionInsetsVertical.left * (itemsPerRow + 1)
             let availableWidth = view.frame.width - paddingSpace
             let widthPerItem = availableWidth / itemsPerRow
             
-            return CGSize(width: widthPerItem, height: widthPerItem / 2)
+            return CGSize(width: widthPerItem, height: widthPerItem / 2.5)
+            
+        } else if collectionView == muscleGroupsCollectionView {
+
+//            let paddingSpace = sectionInsetsHorizontal.top * (itemsPerColumn + 1)
+//            let availableHeight = view.frame.height - paddingSpace
+//            let heightPerItem = availableHeight / itemsPerColumn
+            
+            return CGSize(width: 120, height: 55)
         }
-        return CGSize(width: 125, height: 70)
+        
+        return CGSize(width: 0, height: 0)
     }
     
     //3
@@ -162,18 +177,23 @@ extension ExercisesVC: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return sectionInsets
+        if collectionView == exercisesCollectionView {
+            return sectionInsetsVertical
+        }
+        
+        return sectionInsetsHorizontal
     }
     
     // 4
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if collectionView == muscleGroupsCollectionView {
-            return 20
+        
+        if collectionView == exercisesCollectionView {
+            return sectionInsetsVertical.left
         }
-        return sectionInsets.left
+        
+        return sectionInsetsHorizontal.left - 10
     }
-    
     
 }

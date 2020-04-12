@@ -15,7 +15,7 @@ class MuscleGroupCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 5
     }
     
     

@@ -21,7 +21,8 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.191, green: 0.191, blue: 0.191, alpha: 1.0)
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.gray]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
